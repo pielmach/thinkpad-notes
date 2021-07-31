@@ -78,31 +78,35 @@ I assume some basic Linux knowledge. You probably don't need a Linux machine, a 
 
 5. Now we run a series of AT commands to first unlock the device, receive a list of allowed part IDs, reset the part ID, then reboot the modem. Each successfull command is responded with a `OK`.
 
-    > `# this command unlocks the device with the vendor default password A710`  
-    > `[user@host] $ echo 'AT!ENTERCND="A710"' | atinout - /dev/ttyUSB3 -`
-    >  
-    > `OK`  
-    >
-    > `# this command receives a list of valid UDPID values, if you are not receiver any results, try the next ttyUSB device the device. For me two did respond to the AT and accepted the password but only one returned a non-empty result on this one`
-    > `[user@host] $ echo 'AT!UDPID=?' | atinout - /dev/ttyUSB3 -`
-    >  
-    > `68A3`  
-    > `68AA`  
-    > `68A2`  
-    > `68B1`  
-    > `68A9`  
-    >
-    > `OK`  
-    >
-    > `# this command sets the UDPID to a value that's whitelisted in the BIOS`  
-    > `[user@host] $ echo 'AT!UDPID=68A2' | atinout - /dev/ttyUSB3 -`
-    >  
-    > `OK`  
-    >
-    > `# this command reboots the modem - give it a few seconds before continuing with the next step`  
-    > `[user@host] $ echo 'AT!RESET' | atinout - /dev/ttyUSB3 -`
-    >  
-    > `OK`  
+    1. This command unlocks the device with the vendor default password A710
+
+        > `[user@host] $ echo 'AT!ENTERCND="A710"' | atinout - /dev/ttyUSB3 -`
+        >  
+        > `OK`  
+
+    2. This command receives a list of valid UDPID values, if you are not receiver any results, try the next ttyUSB device the device. For me two did respond to the AT and accepted the password but only one returned a non-empty result on this one
+
+        > `[user@host] $ echo 'AT!UDPID=?' | atinout - /dev/ttyUSB3 -`
+        >  
+        > `68A3`  
+        > `68AA`  
+        > `68A2`  
+        > `68B1`  
+        > `68A9`  
+        >
+        > `OK`  
+        
+    3. This command sets the UDPID to a value that's whitelisted in the BIOS
+
+        > `[user@host] $ echo 'AT!UDPID=68A2' | atinout - /dev/ttyUSB3 -`
+        >  
+        > `OK`  
+    
+    4. This command reboots the modem - give it a few seconds before continuing with the next step
+
+        > `[user@host] $ echo 'AT!RESET' | atinout - /dev/ttyUSB3 -`
+        >  
+        > `OK`  
 
 6. If you run `dmesg` again you should see similar output as before once the device has rebootet.
 7. You are done here. Remove the USB adapter, install the card in your ThinkPad and boot into Windows.
@@ -110,12 +114,14 @@ I assume some basic Linux knowledge. You probably don't need a Linux machine, a 
 ## Installing drivers under Windows
 
 1. Get the latest driver on the [Sierra Website](https://source.sierrawireless.com/devices/mc-series/mc7710/). Unfortunatelly you'll need to register to download the driver. I used Windows Driver version 5087.
-2. Now open a command prompt with admin permissions and go to the folder you downloaded the driver into. This command installs the driver and passes some extra parameters to the installer, without which I did not get the card working properly
+2. Now open a command prompt with admin permissions and go to the folder you downloaded the driver into. Rund the following command with all extra parameters to install the driver. The regular GUI installer will launch afterwards. Note: Without the parameters, I did not get the card working properly!
 
     > `GenericDriverSetup_5087.exe WIN8BUSDriver=1 USBCOMP=8 DisableUsbCompAutoUpdate=1 GPS=1 GPSAUTO=1`
 
-3. The card should work now with the built-in Windows functionality
-4. Suggestion: In the Microsoft Store search for `Skylight`, an app provided by Sierra. It's a nice small application that shows you the cell status 2G or 4G, as well as allows to read or send SMS, plus a few other features.
+3. Reboot your machine.
+4. The card should work now with the built-in Windows functionality! 🎉
+5. Suggestion: In the Microsoft Store search for `Skylight`, an app provided by Sierra. It's a nice small application that shows you the cell status 2G or 4G, as well as allows to read or send SMS, plus a few other features.
+6. Suggestion: If you previously had a Ericsson H5321gw installed, uninstall the `Mobile Broadband Driver v8.2.5` from Lenovo under installed programms.
 
 ## References and Credits
 
