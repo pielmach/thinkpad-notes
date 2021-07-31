@@ -127,7 +127,7 @@ I assume some basic Linux knowledge. You probably don't need a Linux machine, a 
 
 This guide would not have been possible with leveraging some other sources.
 
-* First of all the folks at [thinkpad-forum.de (general thread on X230 with LTE card)](https://thinkpad-forum.de/threads/181957-X230-Sierra-Wireless-MC7710-3G-4G-LTE-HSPA-GPS-f%C3%BCr-T430-X230-von-ebay/page2) that gave me the idea for it and prooved it worked.
+* First of all the folks at [thinkpad-forum.de (general thread on X230 with LTE card)](https://thinkpad-forum.de/threads/181957-X230-Sierra-Wireless-MC7710-3G-4G-LTE-HSPA-GPS-f%C3%BCr-T430-X230-von-ebay) that gave me the idea for it and prooved it worked.
 * Then the earlier mentioned https://github.com/beralt/atinout project that saved me lots of time.
 * Lastly, user falafel at [thinkpad-forum.de (thread on X230 with Sierra MC7710)](https://thinkpad-forum.de/threads/227949-Sierra-MC7710-mit-68A2) with the right command to get the windows driver working properly.
 
