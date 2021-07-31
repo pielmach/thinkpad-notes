@@ -1,12 +1,12 @@
 # LTE/4G support for X230 and T430 using a Sierra MC7710 WWAN Card
 
+If you find this useful, consider to buy me a coffee, either by clicking <a href='https://ko-fi.com/pielmach' target='_blank'><img height='35' style='border:0px;height:20px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a> or clicking the ❤ Sponsor button on the top 🔝
+
 ## Problem statement
 
 Early July 2021 the 3G networks in Germany got turned off. 2G will be kept running but with the officially supported WWAN card (Ericsson H5321gw) this left my X230 and T430 with EDGE speed 😐
 
 After some research I figured out that the Sierra MC7710 WWAN card supports LTE/4G and is also supported by the X230 and T430, although not offically listed as such. It turned out a bit of a journey to get it working and this document contains all steps needed to get it working yourself on a X230 or T430 running Windows 10.
-
-If you find this useful, consider donating me a coffee TODO
 
 ## What you'll need
 
