@@ -69,7 +69,14 @@ I assume some basic Linux knowledge. You probably don't need a Linux machine, a 
 3. Now we need to send a series of AT commands to the modem to rewrite the part ID
     * If you have no clue what that is, read the [Wikipedia article](https://en.wikipedia.org/wiki/Hayes_command_set) on it. In short, it is some ancient commands from 1981 that are still supported in today's modems. Some tech doesn't age 🤷‍♂️
     * To not require using telnet, putty or whatsoever, I am using https://github.com/beralt/atinout in the following to send the AT commands to the Sierra MC7710. Clone the repository and build the `atinout` executable.
-        * If you have no clue on git, make or how to install packages under Linux, you may need to read a bit up on this
+        * If you have no clue on git, make or how to install packages under Linux, you may need to read a bit up on this. If you are brave you can try below steps that I tried on a recent Ubuntu Live USB-Stick.
+            1. Open a terminal and execute the following commends from the command line
+            2. Run `sudo apt-get update` to refresh packages
+            3. Run `sudo apt-get install git build-essential` to install git and essential tools to compile code
+            4. Run `git clone https://github.com/beralt/atinout` to clone the repository locally
+            5. Run `cd atinout` to change into the newly created clone
+            6. Run `make all` to compile the program
+            7. There should now be a newly created executable with filename `atinout` in the same folder. If you want, run `ls -l` to check for it and verify the timestamp.
 4. Now we figure out which of the ttyUSB devices is the modem by sending just the `AT` command. You probably need to drop into a root shell using `sudo -s` first. Then run `echo 'AT' | atinout - /dev/ttyUSB0 -` and increment the last character until you get an `OK` response back. In my example this was ttyUSB3 and a succesfull response looks like this:
 
     > `[user@host] $ echo 'AT' | atinout - /dev/ttyUSB3 -`
