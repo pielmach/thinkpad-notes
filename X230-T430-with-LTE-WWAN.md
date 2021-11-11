@@ -77,9 +77,9 @@ I assume some basic Linux knowledge. You probably don't need a Linux machine, a 
             5. Run `cd atinout` to change into the newly created clone
             6. Run `make all` to compile the program
             7. There should now be a newly created executable with filename `atinout` in the same folder. If you want, run `ls -l` to check for it and verify the timestamp.
-4. Now we figure out which of the ttyUSB devices is the modem by sending just the `AT` command. You probably need to drop into a root shell using `sudo -s` first. Then run `echo 'AT' | atinout - /dev/ttyUSB0 -` and increment the last character until you get an `OK` response back. In my example this was ttyUSB3 and a succesfull response looks like this:
+4. Now we figure out which of the ttyUSB devices is the modem by sending just the `AT` command. You probably need to drop into a root shell using `sudo -s` first. Then run `echo 'AT' | ./atinout - /dev/ttyUSB0 -` and increment the last character until you get an `OK` response back. Note the `./` infront of `atinout` that (under Linux) means current directory. If you are not in the folder where you compiled `atinout`, you need to change the path accordingly. In my example the right ID was ttyUSB3 and a succesfull response looks like this:
 
-    > `[user@host] $ echo 'AT' | atinout - /dev/ttyUSB3 -`
+    > `[user@host] $ echo 'AT' | ./atinout - /dev/ttyUSB3 -`
     >  
     > `OK`
 
@@ -87,13 +87,13 @@ I assume some basic Linux knowledge. You probably don't need a Linux machine, a 
 
     1. This command unlocks the device with the vendor default password A710
 
-        > `[user@host] $ echo 'AT!ENTERCND="A710"' | atinout - /dev/ttyUSB3 -`
+        > `[user@host] $ echo 'AT!ENTERCND="A710"' | ./atinout - /dev/ttyUSB3 -`
         >  
         > `OK`  
 
     2. This command receives a list of valid UDPID values, if you are not receiver any results, try the next ttyUSB device the device. For me two did respond to the AT and accepted the password but only one returned a non-empty result on this one
 
-        > `[user@host] $ echo 'AT!UDPID=?' | atinout - /dev/ttyUSB3 -`
+        > `[user@host] $ echo 'AT!UDPID=?' | ./atinout - /dev/ttyUSB3 -`
         >  
         > `68A3`  
         > `68AA`  
@@ -105,13 +105,13 @@ I assume some basic Linux knowledge. You probably don't need a Linux machine, a 
         
     3. This command sets the UDPID to a value that's whitelisted in the BIOS
 
-        > `[user@host] $ echo 'AT!UDPID=68A2' | atinout - /dev/ttyUSB3 -`
+        > `[user@host] $ echo 'AT!UDPID=68A2' | ./atinout - /dev/ttyUSB3 -`
         >  
         > `OK`  
     
     4. This command reboots the modem - give it a few seconds before continuing with the next step
 
-        > `[user@host] $ echo 'AT!RESET' | atinout - /dev/ttyUSB3 -`
+        > `[user@host] $ echo 'AT!RESET' | ./atinout - /dev/ttyUSB3 -`
         >  
         > `OK`  
 
